@@ -10,6 +10,7 @@
 
 import React, { useState } from 'react';
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -23,10 +24,23 @@ import {
 import Headertxt from './src/components/HeaderTxt';
 import { Checkbox } from 'react-native-paper';
 import { Button, Provider as PaperProvider } from 'react-native-paper';
+import { RadioButton } from 'react-native-paper';
+
 
 const App = () => {
 
   const [isSelected, setSelection] = useState(false);
+
+  //Give alerts
+  const simpleAlertHandler1 = () => {
+    //function to make simple alert
+    Alert.alert('You are going to add a new task!');
+  };
+
+  const simpleAlertHandler2 = () => {
+    //function to make simple alert
+    Alert.alert('Changes are saved!');
+  };
 
   const persons = [
     {
@@ -44,10 +58,16 @@ const App = () => {
     {
     id: "4",
     name: "Task 4",
+    },
+    {
+    id: "5",
+    name: "Task 5",
     }
   ];
 
   const [checked, setChecked] = React.useState(false);
+  const [checked1, setChecked1] = React.useState('first');
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -62,7 +82,7 @@ const App = () => {
                   mode="contained"
                   color='#000080'
                   labelStyle={{color: 'white'}}
-                  onPress={() => console.log('Button Pressed')}>
+                  onPress={simpleAlertHandler1}>
                   ADD
                 </Button>
             </View>
@@ -72,7 +92,7 @@ const App = () => {
                   mode="contained"
                   color='#000080'
                   labelStyle={{color: 'white'}}
-                  onPress={() => console.log('Button Pressed')}>
+                  onPress={simpleAlertHandler2}>
                   SAVE
                 </Button>
             </View>
@@ -91,7 +111,18 @@ const App = () => {
             }}
             />
 
-            {person.name}</Text>
+            {person.name}
+            
+            <View style={styles.radiobut}>
+            <RadioButton
+            value="first"
+            status={ checked1 === 'first' ? 'checked' : 'unchecked' }
+            onPress={() => setChecked1('first')}
+            color={'red'}
+            />
+            </View>
+
+            </Text>
           </View>
         );
       })}
@@ -120,8 +151,8 @@ const styles = StyleSheet.create({
   imagestyle:{
     width:200,
     height:200,
-    alignItems:'center',
-    justifyContent: 'space-between'
+    justifyContent:'center',
+    marginLeft:80
   },
 
   buttonview:{
@@ -129,6 +160,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     marginTop: 15,
+    paddingBottom:15
   },
 
   view1:{
@@ -137,6 +169,10 @@ const styles = StyleSheet.create({
 
   view2:{
     flexDirection:'column'
+  },
+
+  radiobut:{
+    paddingLeft:185
   }
 });
 
