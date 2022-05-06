@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,10 +17,14 @@ import {
   Text,
   useColorScheme,
   View,
+  CheckBox,
+
 } from 'react-native';
 import Headertxt from './src/components/HeaderTxt';
 
 const App = () => {
+
+  const [isSelected, setSelection] = useState(false);
 
   const persons = [
     {
@@ -49,7 +53,7 @@ const App = () => {
       {persons.map((person) => {
         return (
           <View>
-            <Text style={styles.item}>{person.name}</Text>
+            <Text style={styles.item}> <CheckBox /> {person.name}</Text>
           </View>
         );
       })}
