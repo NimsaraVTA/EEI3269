@@ -10,9 +10,18 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0",
     "@types/react": "^18.0.8",
+    "expo-asset": "~1.1.1",
+    "expo-constants": "~1.1.0",
+    "expo-file-system": "~1.1.0",
+    "expo-font": "^1.0.0",
+    "expo-vector-icons": "^10.0.1",
     "react": "17.0.2",
-    "react-native": "0.68.1"
+    "react-native": "0.68.1",
+    "react-native-elements": "^1.0.0-beta7",
+    "react-native-paper": "^4.12.1",
+    "react-native-vector-icons": "^9.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

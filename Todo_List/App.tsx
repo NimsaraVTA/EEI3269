@@ -10,17 +10,19 @@
 
 import React, { useState } from 'react';
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
-  View,
-  CheckBox,
+  View
 
 } from 'react-native';
 import Headertxt from './src/components/HeaderTxt';
+import { Checkbox } from 'react-native-paper';
+import { Button, Provider as PaperProvider } from 'react-native-paper';
 
 const App = () => {
 
@@ -45,19 +47,57 @@ const App = () => {
     }
   ];
 
-  return (
-    <View style={styles.container}>
+  const [checked, setChecked] = React.useState(false);
 
-      <Headertxt />
+  return (
+    <SafeAreaView style={styles.container}>
+
+<ScrollView>
+      <Headertxt />   
+          <Image style={styles.imagestyle} source={require('./src/images/a.jpg')} />
+          
+          <View style={styles.buttonview}>
+            <View style={styles.view1}>
+                <Button
+                  mode="contained"
+                  color='#000080'
+                  labelStyle={{color: 'white'}}
+                  onPress={() => console.log('Button Pressed')}>
+                  ADD
+                </Button>
+            </View>
+
+            <View style={styles.view2}>
+                <Button
+                  mode="contained"
+                  color='#000080'
+                  labelStyle={{color: 'white'}}
+                  onPress={() => console.log('Button Pressed')}>
+                  SAVE
+                </Button>
+            </View>
+
+          </View>
 
       {persons.map((person) => {
         return (
-          <View>
-            <Text style={styles.item}> <CheckBox /> {person.name}</Text>
+          <View key={person.id.toString()}>
+            <Text style={styles.item}> 
+
+            <Checkbox
+            status={checked ? 'checked' : 'unchecked'}
+            onPress={() => {
+            setChecked(!checked);
+            }}
+            />
+
+            {person.name}</Text>
           </View>
         );
       })}
-    </View>
+
+</ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -72,10 +112,31 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     fontSize: 25,
-    marginTop: 5,
+    marginTop: 15,
     backgroundColor: '#ffffff',
     fontWeight:'bold',
     color:'#000000',
+  },
+  imagestyle:{
+    width:200,
+    height:200,
+    alignItems:'center',
+    justifyContent: 'space-between'
+  },
+
+  buttonview:{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginTop: 15,
+  },
+
+  view1:{
+    flexDirection:'column'
+  },
+
+  view2:{
+    flexDirection:'column'
   }
 });
 
